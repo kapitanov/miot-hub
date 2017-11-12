@@ -1,0 +1,55 @@
+version: '2'
+services:
+  broker:
+    build: ./rabbitmq
+    container_name: miot_broker
+    restart: always
+    logging: 
+      options: 
+        max-size: '100m'
+        max-file: '1'
+    ports:
+      - 1883:1883
+      - 5672:5672
+    volumes: 
+      - ./data/rabbitmq:/var/lib/rabbitmq
+    environment: 
+      RABBITMQ_NODENAME: 'rabbitmq@localhost'
+      VIRTUAL_HOST: 'rabbitmq.${HOSTNAME}'
+      VIRTUAL_PORT: '15672'
+
+  frontpage:
+    image: nginx:alpine
+    container_name: miot_frontpage
+    restart: always
+    logging: 
+      options: 
+        max-size: '10m'
+        max-file: '1'
+    environment: 
+      VIRTUAL_HOST: '${HOSTNAME}'
+    volumes:
+      - ./www:/usr/share/nginx/html
+
+  https-portal:
+    image: steveltn/https-portal
+    container_name: https_portal
+    restart: always
+    logging: 
+      options: 
+        max-size: '10m'
+        max-file: '1'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data/ssl_certs:/var/lib/https-portal
+    ports:
+      - 80:80
+      - 443:443
+    environment: 
+      WEBSOCKET: 'true'
+      STAGE: 'production'
+
+networks: 
+  default:
+    external:
+      name: miot
