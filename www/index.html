@@ -21,7 +21,8 @@
                     <div class="inner">
                         <h3 class="masthead-brand"></h3>
                         <nav class="nav nav-masthead">
-                            <a class="nav-link" href="#" onclick="return openRabbitMQ();">RabbitMQ</a>
+                            <a class="nav-link" href="#" onclick="return open('rabbitmq');">RabbitMQ</a>
+                            <a class="nav-link" href="#" onclick="return open('arc');">Arc</a>
                         </nav>
                     </div>
                 </header>
@@ -44,8 +45,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/esm/popper.min.js"></script>
     <script src="://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script>
-        function openRabbitMQ() {
-            window.location = window.location.protocol + '//rabbitmq.' + window.location.hostname;
+        function open(site) {
+            window.location = window.location.protocol + '//.' + site + '.' + window.location.hostname;
             return false;
         }
     </script>
