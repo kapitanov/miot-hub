@@ -24,6 +24,13 @@ How to run
    export HOSTNAME=my-awesome-domain-name.com
    ```
 
+3. Clone this repository somewhere.
+4. Run docker-compose:
+
+   ```shell
+   docker-compose up -d
+   ```
+
 Connecting to RabbitMQ
 ----------------------
 
