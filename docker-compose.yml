@@ -32,7 +32,7 @@ services:
       - ./www:/usr/share/nginx/html
 
   https-portal:
-    image: steveltn/https-portal
+    build: ./https-portal
     container_name: https_portal
     restart: always
     logging: 
