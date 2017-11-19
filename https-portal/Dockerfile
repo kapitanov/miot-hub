@@ -1,2 +1,2 @@
 FROM steveltn/https-portal
-ADD ./default.conf.erb /var/lib/nginx-conf/default.ssl.conf.erb
+ADD ./acme_tiny.py /bin/acme_tiny
