@@ -5,7 +5,7 @@ MIOT stands for "My IoT" (so MIOT is "My IoT Hub").
 
 This repo contains configuration for
 
-* [https-portal](https://github.com/SteveLTN/https-portal) (configured with container auto-discovery),
+* [Caddy](https://github.com/mholt/caddy) (configured with container auto-discovery),
 * [RabbitMQ](https://hub.docker.com/_/rabbitmq/)
 * [NGINX](https://hub.docker.com/_/nginx/) (for home page)
 
@@ -48,11 +48,6 @@ VIRTUAL_HOST=abc.my-awesome-domain-name.com
 VIRTUAL_PORT=8012
 ```
 
-[`https-portal`](https://github.com/SteveLTN/https-portal) will auto-discover this container, so every http(s) request to `abc.my-awesome-domain-name.com` will be proxied to `YOUR_CONTAINER:8012`
+[`caddy`](https://github.com/mholt/caddy) will auto-discover this container, so every http(s) request to `abc.my-awesome-domain-name.com` will be proxied to `YOUR_CONTAINER:8012`
 
 > **NOTE:** Container *must* be attached to the same network you've created to run MIOT (e.g. `miot`)
-
-Force certificates renew
-------------------------
-
-Just run `./renew_certs.sh` script to force LetsEncrypt certificate refresh (however it should work automatically).

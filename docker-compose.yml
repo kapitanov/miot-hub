@@ -31,9 +31,9 @@ services:
     volumes:
       - ./www:/usr/share/nginx/html
 
-  https-portal:
-    build: ./https-portal
-    container_name: https_portal
+  caddy:
+    image: gwelican/caddy-proxy
+    container_name: caddy
     restart: always
     logging: 
       options: 
@@ -41,13 +41,10 @@ services:
         max-file: '1'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./data/ssl_certs:/var/lib/https-portal
+      - ./data/caddy:/etc/caddycerts
     ports:
       - 80:80
       - 443:443
-    environment: 
-      WEBSOCKET: 'true'
-      STAGE: 'production'
 
 networks: 
   default:
