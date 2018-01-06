@@ -32,7 +32,7 @@ services:
       - ./www:/usr/share/nginx/html
 
   caddy:
-    image: gwelican/caddy-proxy
+    build: ./caddy
     container_name: caddy
     restart: always
     logging: 
@@ -42,6 +42,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./data/caddy:/etc/caddycerts
+    environment:
+        DOCKER_HOST: unix:///var/run/docker.sock
     ports:
       - 80:80
       - 443:443
