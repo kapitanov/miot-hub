@@ -58,12 +58,11 @@ func weatherUpdate() error {
 	if err != nil {
 		return err
 	}
-	lock.Lock()
-	defer lock.Unlock()
 
-	currentWeather = w
-	log.Printf("Now in %s %0f deg\n", city, w.Now)
-	mqttPublish()
+	if weatherSet(w) {
+		log.Printf("Now in %s %0f deg\n", city, w.Now)
+		mqttPublish()
+	}
 
 	return nil
 }
@@ -73,6 +72,18 @@ func weatherGet() *weather {
 	defer lock.Unlock()
 
 	return currentWeather
+}
+
+func weatherSet(w *weather) bool {
+	lock.Lock()
+	defer lock.Unlock()
+
+	if currentWeather.Now != w.Now {
+		currentWeather = w
+		return true
+	}
+
+	return false
 }
 
 func weatherQuery() (*weather, error) {

@@ -11,4 +11,5 @@ COPY --from=build /go/src/github.com/kapitanov/miot-time/www /app/www
 COPY --from=build /usr/local/go/lib /usr/local/go/lib
 EXPOSE 3000
 WORKDIR /app
+HEALTHCHECK --start-period=30s CMD curl -f http://localhost:3000/api/time || exit 1
 CMD ["/app/miot-time"]
