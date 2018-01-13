@@ -10,6 +10,7 @@ This repo contains configuration for
 * [NGINX](https://hub.docker.com/_/nginx/) (for home page)
 * [miot-time](time/README.md)
 * [miot-weather](weather/README.md)
+* [miot-arc-lamp](arc-lamp/README.md)
 
 How to run
 ----------
