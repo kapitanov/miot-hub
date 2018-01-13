@@ -1,8 +1,8 @@
 version: '2'
 services:
-  broker:
+  rabbitmq:
     build: ./rabbitmq
-    container_name: miot_broker
+    container_name: rabbitmq
     restart: always
     logging: 
       options: 
@@ -47,6 +47,32 @@ services:
     ports:
       - 80:80
       - 443:443
+
+  weather:
+    build: ./weather
+    container_name: weather
+    restart: always
+    env_file: ./.env
+    logging: 
+      options: 
+        max-size: '10m'
+        max-file: '1'
+    environment: 
+      VIRTUAL_HOST: 'weather.${HOSTNAME}'
+      VIRTUAL_PORT: '3000'      
+
+  time:
+    build: ./time
+    container_name: time
+    restart: always
+    env_file: ./.env
+    logging: 
+      options: 
+        max-size: '10m'
+        max-file: '1'
+    environment: 
+      VIRTUAL_HOST: 'time.${HOSTNAME}'
+      VIRTUAL_PORT: '3000'
 
 networks: 
   default:

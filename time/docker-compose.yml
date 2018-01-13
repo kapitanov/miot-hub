@@ -1,0 +1,12 @@
+version: '2'
+services:
+  time:
+    build: .
+    container_name: time
+    env_file: ./.env
+    ports:
+    - 3000:3000
+networks: 
+  default:
+    external:
+      name: miot

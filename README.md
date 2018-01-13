@@ -8,6 +8,8 @@ This repo contains configuration for
 * [Caddy](https://github.com/mholt/caddy) (configured with container auto-discovery),
 * [RabbitMQ](https://hub.docker.com/_/rabbitmq/)
 * [NGINX](https://hub.docker.com/_/nginx/) (for home page)
+* [miot-time](time/README.md)
+* [miot-weather](weather/README.md)
 
 How to run
 ----------
