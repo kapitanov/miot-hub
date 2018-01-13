@@ -78,7 +78,7 @@ func weatherSet(w *weather) bool {
 	lock.Lock()
 	defer lock.Unlock()
 
-	if currentWeather.Now != w.Now {
+	if currentWeather == nil || currentWeather.Now != w.Now {
 		currentWeather = w
 		return true
 	}
